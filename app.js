@@ -75,10 +75,15 @@ function clearAndRestart() {
 function goBack() {
     if (!operator && !secondNumber && firstNumber !== undefined) {
         let arr = Array.from(String(firstNumber), Number);
-        console.log(arr);
-        arr.pop();
-        firstNumber = parseFloat(arr.join(""));
-        setScreen(firstNumber, secondNumber, total, operator);
+        console.log("pop", arr.length);
+        if (arr.length <= 1) {
+            clearAndRestart();
+            setScreen(firstNumber, secondNumber, total, operator);
+        } else if (arr.length >= 2) {
+            arr.pop();
+            firstNumber = parseFloat(arr.join("")) || 0;
+            setScreen(firstNumber, secondNumber, total, operator);
+        }
         return firstNumber;
     } else if (
         operator &&
@@ -86,10 +91,15 @@ function goBack() {
         secondNumber !== undefined
     ) {
         let arr = Array.from(String(secondNumber), Number);
-        console.log(arr);
-        arr.pop();
-        secondNumber = parseFloat(arr.join(""));
-        setScreen(firstNumber, secondNumber, total, operator);
+        if (arr.length <= 1) {
+            secondNumber = undefined;
+            secondArr = [];
+            setScreen(firstNumber, secondNumber, total, operator);
+        } else {
+            arr.pop();
+            secondNumber = parseFloat(arr.join("")) || 0;
+            setScreen(firstNumber, secondNumber, total, operator);
+        }
         return secondNumber;
     }
 }
@@ -116,10 +126,18 @@ function getOperator(currentOperator, isClicked) {
 }
 
 function setScreen(firstNumber, secondNumber, total, operator) {
-    if (!total && firstNumber !== undefined && !operator && !secondNumber) {
-        screen.innerHTML = "<p class='innerText'>" + firstNumber + "</p>";
+    if (total !== undefined && total !== null) {
+        screen.innerHTML =
+            "<p class='innerText'>" +
+            firstNumber +
+            " " +
+            operator +
+            " " +
+            secondNumber +
+            " = " +
+            total +
+            "</p>";
     } else if (
-        !total &&
         firstNumber !== undefined &&
         operator &&
         secondNumber !== undefined
@@ -132,17 +150,10 @@ function setScreen(firstNumber, secondNumber, total, operator) {
             " " +
             secondNumber +
             "</p>";
-    } else if (total) {
-        screen.innerHTML =
-            "<p class='innerText'>" +
-            firstNumber +
-            " " +
-            operator +
-            " " +
-            secondNumber +
-            " = " +
-            total +
-            "</p>";
+    } else if (firstNumber !== undefined) {
+        screen.innerHTML = "<p class='innerText'>" + firstNumber + "</p>";
+    } else {
+        screen.innerHTML = "";
     }
 }
 
