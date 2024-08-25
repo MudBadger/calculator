@@ -188,7 +188,6 @@ function divide(firstNumber, secondNumber) {
 
 function calculate(operator, isOperatorClicked, number) {
     getNumber(number, isOperatorClicked);
-    s;
     if (firstNumber === undefined) {
         screen.innerHTML = "<p>Error: Enter a valid first number</p>";
         return;
