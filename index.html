@@ -3,9 +3,60 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
         <title>Document</title>
     </head>
     <body>
+        <div class="calculatorContainer">
+            <div class="screenContainer"></div>
+            <div class="calculatorLayout">
+                <div class="numberContainer">
+                    <div class="numberRow">
+                        <button class="numberBtn btn" data-number="0">0</button>
+                        <div class="otherBtnContainer">
+                            <button class="clearBtn btn">C</button>
+                            <button class="equalBtn btn" data-equal="equal">
+                                =
+                            </button>
+                        </div>
+                    </div>
+                    <div class="numberRow">
+                        <button class="numberBtn btn" data-number="1">1</button
+                        ><button class="numberBtn btn" data-number="2">2</button
+                        ><button class="numberBtn btn" data-number="3">
+                            3
+                        </button>
+                    </div>
+                    <div class="numberRow">
+                        <button class="numberBtn btn" data-number="4">4</button>
+                        <button class="numberBtn btn" data-number="5">5</button
+                        ><button class="numberBtn btn" data-number="6">
+                            6
+                        </button>
+                    </div>
+                    <div class="numberRow">
+                        <button class="numberBtn btn" data-number="7">7</button>
+                        <button class="numberBtn btn" data-number="8">8</button
+                        ><button class="numberBtn btn" data-number="9">
+                            9
+                        </button>
+                    </div>
+                </div>
+
+                <div class="operatorContainer">
+                    <button class="operatorBtn btn" data-operator="add">
+                        +</button
+                    ><button class="operatorBtn btn" data-operator="substract">
+                        -</button
+                    ><button class="operatorBtn btn" data-operator="multiply">
+                        *</button
+                    ><button class="operatorBtn btn" data-operator="divide">
+                        /
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <script type="text/javascript" src="app.js"></script>
     </body>
 </html>
