@@ -75,7 +75,6 @@ function clearAndRestart() {
 function goBack() {
     if (!operator && !secondNumber && firstNumber !== undefined) {
         let arr = Array.from(String(firstNumber), Number);
-        console.log("pop", arr.length);
         if (arr.length <= 1) {
             clearAndRestart();
             setScreen(firstNumber, secondNumber, total, operator);
@@ -171,7 +170,6 @@ function operate(operator, firstNumber, secondNumber) {
             total = parseFloat(total.toFixed(5));
         }
     }
-
     return total;
 }
 
@@ -190,13 +188,10 @@ function divide(firstNumber, secondNumber) {
 
 function calculate(operator, isOperatorClicked, number) {
     getNumber(number, isOperatorClicked);
-    console.log("here", firstNumber);
-    console.log("there", secondNumber);
+    s;
     if (firstNumber === undefined) {
         screen.innerHTML = "<p>Error: Enter a valid first number</p>";
         return;
     }
-    console.log(total);
-
     setScreen(firstNumber, secondNumber, total, operator);
 }
