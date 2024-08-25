@@ -1,17 +1,35 @@
-let firstNumber;
-let secondNumber;
+let firstNumber = undefined;
+let secondNumber = undefined;
 let total;
-let number;
 let operator;
 let isOperatorClicked = false;
 let firstArr = [];
 let secondArr = [];
 let numberKeys = document.querySelectorAll(".numberBtn");
 let operatorKeys = document.querySelectorAll(".operatorBtn");
+let screen = document.querySelector(".screenContainer");
+let clear = document.querySelector(".clearBtn");
+let equal = document.querySelector(".equalBtn");
+let decimal = document.querySelector(".decimalBtn");
+let back = document.querySelector(".backBtn");
+
+clear.addEventListener("click", (e) => {
+    clearAndRestart();
+    screen.innerHTML = "";
+});
+
+back.addEventListener("click", (e) => {
+    goBack();
+});
 
 numberKeys.forEach((key) => {
     key.addEventListener("click", (e) => {
-        number = e.target.dataset.number;
+        if (total !== null) {
+            clearAndRestart();
+        }
+        if (total) {
+        }
+        let number = e.target.dataset.number;
         calculate(operator, isOperatorClicked, number);
     });
 });
@@ -19,11 +37,62 @@ numberKeys.forEach((key) => {
 operatorKeys.forEach((key) => {
     key.addEventListener("click", (e) => {
         let currentOperator = e.target.dataset.operator;
+        if (total !== null) {
+            firstNumber = total;
+            secondArr = [];
+            secondNumber = undefined;
+            total = null;
+        }
         let isClicked = true;
         getOperator(currentOperator, isClicked);
     });
 });
 
+equal.addEventListener("click", (e) => {
+    if (operator === "/" && (secondNumber === 0 || firstNumber === 0)) {
+        screen.innerHTML = "<p>Error: Division by 0</p>";
+        return null;
+    }
+    if (operator && firstNumber !== undefined && secondNumber !== undefined) {
+        operate(operator, firstNumber, secondNumber);
+        setScreen(firstNumber, secondNumber, total, operator);
+    }
+});
+
+function clearAndRestart() {
+    return (
+        (operator = ""),
+        (firstArr = []),
+        (secondArr = []),
+        (firstNumber = undefined),
+        (secondNumber = undefined),
+        (total = null),
+        (operator = ""),
+        (isOperatorClicked = false)
+    );
+}
+
+function goBack() {
+    if (!operator && !secondNumber && firstNumber !== undefined) {
+        let arr = Array.from(String(firstNumber), Number);
+        console.log(arr);
+        arr.pop();
+        firstNumber = parseFloat(arr.join(""));
+        setScreen(firstNumber, secondNumber, total, operator);
+        return firstNumber;
+    } else if (
+        operator &&
+        firstNumber !== undefined &&
+        secondNumber !== undefined
+    ) {
+        let arr = Array.from(String(secondNumber), Number);
+        console.log(arr);
+        arr.pop();
+        secondNumber = parseFloat(arr.join(""));
+        setScreen(firstNumber, secondNumber, total, operator);
+        return secondNumber;
+    }
+}
 function getNumber(number, isOperatorClicked) {
     if (!isOperatorClicked) {
         firstArr.push(number);
@@ -45,23 +114,54 @@ function getOperator(currentOperator, isClicked) {
     isOperatorClicked = isClicked;
     return operator, isOperatorClicked;
 }
-function calculate(operator, isOperatorClicked, number) {
-    getNumber(number, isOperatorClicked);
-    console.log(operator, firstNumber, secondNumber);
-    if (operator && firstNumber && secondNumber) {
-        total = operate(operator, firstNumber, secondNumber);
-        console.log(total);
+
+function setScreen(firstNumber, secondNumber, total, operator) {
+    if (!total && firstNumber !== undefined && !operator && !secondNumber) {
+        screen.innerHTML = "<p class='innerText'>" + firstNumber + "</p>";
+    } else if (
+        !total &&
+        firstNumber !== undefined &&
+        operator &&
+        secondNumber !== undefined
+    ) {
+        screen.innerHTML =
+            "<p class='innerText'>" +
+            firstNumber +
+            " " +
+            operator +
+            " " +
+            secondNumber +
+            "</p>";
+    } else if (total) {
+        screen.innerHTML =
+            "<p class='innerText'>" +
+            firstNumber +
+            " " +
+            operator +
+            " " +
+            secondNumber +
+            " = " +
+            total +
+            "</p>";
     }
 }
+
 function operate(operator, firstNumber, secondNumber) {
     const operators = {
-        "add": add(firstNumber, secondNumber),
-        "substract": subtract(firstNumber, secondNumber),
-        "multiply": multiply(firstNumber, secondNumber),
-        "divide": divide(firstNumber, secondNumber),
+        "+": add(firstNumber, secondNumber),
+        "-": subtract(firstNumber, secondNumber),
+        "*": multiply(firstNumber, secondNumber),
+        "/": divide(firstNumber, secondNumber),
     };
+    total = operators[operator];
+    if (total !== null && total.toString().includes(".")) {
+        const decimals = total.toString().split(".")[1];
+        if (decimals.length > 5) {
+            total = parseFloat(total.toFixed(5));
+        }
+    }
 
-    return operators[operator];
+    return total;
 }
 
 function add(firstNumber, secondNumber) {
@@ -75,4 +175,17 @@ function multiply(firstNumber, secondNumber) {
 }
 function divide(firstNumber, secondNumber) {
     return firstNumber / secondNumber;
+}
+
+function calculate(operator, isOperatorClicked, number) {
+    getNumber(number, isOperatorClicked);
+    console.log("here", firstNumber);
+    console.log("there", secondNumber);
+    if (firstNumber === undefined) {
+        screen.innerHTML = "<p>Error: Enter a valid first number</p>";
+        return;
+    }
+    console.log(total);
+
+    setScreen(firstNumber, secondNumber, total, operator);
 }

@@ -4,6 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet"
+        />
         <title>Document</title>
     </head>
     <body>
@@ -11,15 +17,18 @@
             <div class="screenContainer"></div>
             <div class="calculatorLayout">
                 <div class="numberContainer">
+                    <button class="equalBtn btn">=</button>
                     <div class="numberRow">
+                        <button
+                            class="decimalBtn numberBtn btn"
+                            data-number="."
+                        >
+                            .
+                        </button>
                         <button class="numberBtn btn" data-number="0">0</button>
-                        <div class="otherBtnContainer">
-                            <button class="clearBtn btn">C</button>
-                            <button class="equalBtn btn" data-equal="equal">
-                                =
-                            </button>
-                        </div>
+                        <button class="clearBtn btn">C</button>
                     </div>
+
                     <div class="numberRow">
                         <button class="numberBtn btn" data-number="1">1</button
                         ><button class="numberBtn btn" data-number="2">2</button
@@ -44,15 +53,11 @@
                 </div>
 
                 <div class="operatorContainer">
-                    <button class="operatorBtn btn" data-operator="add">
-                        +</button
-                    ><button class="operatorBtn btn" data-operator="substract">
-                        -</button
-                    ><button class="operatorBtn btn" data-operator="multiply">
-                        *</button
-                    ><button class="operatorBtn btn" data-operator="divide">
-                        /
-                    </button>
+                    <button class="operatorBtn btn" data-operator="+">+</button
+                    ><button class="operatorBtn btn" data-operator="-">-</button
+                    ><button class="operatorBtn btn" data-operator="*">*</button
+                    ><button class="operatorBtn btn" data-operator="/">/</button
+                    ><button class="backBtn btn">«</button>
                 </div>
             </div>
         </div>

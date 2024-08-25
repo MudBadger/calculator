@@ -1,31 +1,56 @@
 body {
-    background-color: bisque;
+    background-image: url(../images/pattern.svg);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 3%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.calculatorContainer {
+    width: 30%;
+    background-color: bisque;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 4rem;
+    border-top: 15px solid white;
+    border-left: 15px solid lightgrey;
 }
 
 .btn {
     border: none;
     border-radius: 8px;
     font-size: 2rem;
-    width: 4rem;
+    width: 100%;
     height: 3rem;
+    font-family: "Balsamiq Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .screenContainer {
     width: 100%;
-    height: 4rem;
+    height: 6rem;
     background-color: lightyellow;
+    border-bottom: 10px inset white;
+    border-right: 10px inset lightgrey;
     border-radius: 8px;
     margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 .calculatorLayout {
+    width: 100%;
     display: flex;
     gap: 0.2rem;
 }
 .numberContainer {
+    width: 100%;
     display: flex;
     flex-direction: column-reverse;
     gap: 0.2rem;
@@ -40,18 +65,51 @@ body {
 }
 
 .numberBtn:hover {
-    background-color: aquamarine;
+    background-color: rgb(166, 206, 206);
 }
 
 .clearBtn {
-    background-color: orange;
+    background-color: rgb(255, 193, 170);
 }
 .clearBtn:hover {
-    background-color: orangered;
+    background-color: rgb(255, 159, 124);
 }
 
 .operatorContainer {
+    width: 33%;
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+}
+
+.equalBtn {
+    width: 100%;
+    background-color: rgb(189, 223, 189);
+}
+.equalBtn:hover {
+    background-color: darkseagreen;
+}
+
+.backBtn {
+    background-color: rgb(255, 211, 206);
+}
+.backBtn:hover {
+    background-color: rgb(250, 171, 163);
+}
+
+.innerText {
+    margin: 1rem;
+    font-family: "Courier New", Courier, monospace;
+    font-family: "Balsamiq Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+.operatorBtn {
+    background-color: rgb(221, 210, 233);
+}
+
+.operatorBtn:hover {
+    background-color: rgb(181, 151, 213);
 }
