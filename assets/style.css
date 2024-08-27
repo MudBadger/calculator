@@ -1,11 +1,3 @@
-@media screen and (max-width: 768px) {
-    .calculatorContainer {
-        width: 70vw;
-    }
-    .btn {
-        width: 100%;
-    }
-}
 body {
     background-image: url(../assets/images/pattern.svg);
     background-position: center;
@@ -122,4 +114,13 @@ body {
 
 .operatorBtn:hover {
     background-color: rgb(181, 151, 213);
+}
+
+@media (max-width: 768px) {
+    .calculatorContainer {
+        width: 70vw;
+    }
+    .btn {
+        width: 100%;
+    }
 }
