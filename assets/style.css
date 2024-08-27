@@ -12,7 +12,7 @@ body {
 }
 
 .calculatorContainer {
-    width: 30vh;
+    width: 30vw;
     background-color: bisque;
     border-radius: 16px;
     padding: 1.5rem;
